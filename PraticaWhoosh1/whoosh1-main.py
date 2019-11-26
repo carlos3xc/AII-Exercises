@@ -150,13 +150,13 @@ def apartado_b_fecha(dirindex):
             if len(fechas_str_list) > 1:
                 fechainicio = parse_fecha(fechas_str_list[0])
                 fechafin = parse_fecha(fechas_str_list[1])
-                date_query = f"date:[{fechainicio.strftime('%Y%m%d')} to {fechafin.strftime('%Y%m%d')}]"
+                date_query = f":[{fechainicio.strftime('%Y%m%d')} TO {fechafin.strftime('%Y%m%d')}]"
             elif len(fechas_str_list) == 1:
                 fechainicio = parse_fecha(fechas_str_list[0])
                 fechafin = datetime.today()
-                date_query = f"date:[{fechainicio.strftime('%Y%m%d')} to {fechafin.strftime('%Y%m%d')}]"
+                date_query = f"[{fechainicio.strftime('%Y%m%d')} TO {fechafin.strftime('%Y%m%d')}]"
 
-            print(f"Date: {date_query}")
+            print(f"{date_query}")
             query = QueryParser("fecha", ix_sensacine.schema).parse(date_query)
             results = searcher.search(query)
             print(f"Resultados recuperados: {results}")
