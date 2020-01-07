@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AII-Exercises.iml" filepath="$PROJECT_DIR$/.idea/AII-Exercises.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../plantilla-django/.idea/plantilla-django.iml" filepath="$PROJECT_DIR$/../plantilla-django/.idea/plantilla-django.iml" />
     </modules>
   </component>
 </project>
