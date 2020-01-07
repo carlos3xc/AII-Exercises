@@ -1,0 +1,45 @@
+{% extends 'master.html' %}
+
+{% block titulo %} Busqueda de peliculas por fecha {% endblock %}
+
+
+{% block buscarPeliculasActiva %} uk-active {% endblock %}
+
+{% block paginaActiva %}
+	<li class="uk-active"><span>Busqueda de Peliculas</span></li>
+{% endblock %}
+		    
+
+{% block contenido %} 
+    <div class="uk-animation-slide-bottom">
+    	<form class="uk-form" id="formulario" method="post" action=''>{% csrf_token %}
+    		<fieldset>
+    			<legend>Busqueda de Peliculas</legend>
+				<input type="text" name="year" id="id_year" placeholder="Anyo de Publicacion"/>
+    			<BR><BR>
+
+    			<input class="uk-button" type='submit' value='Realizar Busqueda'/>
+    		</fieldset>
+    	</form>
+	    
+	    <hr>
+
+	    {% if peliculas %}
+		    <h3> Peliculas del a&ntilde;o:  {{ peliculas|length }}</h3>
+		    <dl class="uk-description-list-line">
+
+			{% for row in peliculas %}
+			    <dt>{{row.titulo}}</dt>
+			    <dd>{{row.fechaEstreno}} | <a target="_blank" href="{{row.imdbUrl}}">{{row.imdbUrl}}</a></dd>
+			    <dd> Categorias: 
+			    {% for cat in row.categorias.all %}
+			    	{{cat.nombre}} 
+			    {% endfor %}
+			    </dd>		    
+			{% endfor %}
+
+			</dl>
+
+		{% endif %}
+	</div>
+{% endblock %}

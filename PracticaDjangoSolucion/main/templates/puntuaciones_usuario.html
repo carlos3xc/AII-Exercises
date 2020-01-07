@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+
+{% block titulo %} Busqueda de puntuaciones de usuario {% endblock %}
+
+{% block buscarUsuarioActiva %} uk-active {% endblock %}
+		    
+
+{% block contenido %} 
+    <div class="uk-animation-slide-bottom">
+    	<form class="uk-form" id="formulario" method="post" action=''>{% csrf_token %}
+    		<fieldset>
+    			<legend>Busqueda de Usuarios</legend>
+    			<input type="text" name="idUsuario" id="id_idUsuario" placeholder="Id del Usuario"/>
+    			<br><br>
+    			<input class="uk-button" type='submit' value='Realizar Busqueda'/>
+    		</fieldset>
+    	</form>
+	    
+	    <hr>
+
+	    {% if puntuaciones %}
+		    <h3> Peliculas puntuadas por el usuario:  {{ puntuaciones|length }}</h3>
+		    <dl class="uk-description-list-line">
+
+			{% for row in puntuaciones %}
+			    <dt>{{row.idPelicula.titulo}}</dt>
+			    <dd>Puntuacion: {{row.puntuacion}}/5</dd>
+			{% endfor %}
+
+			</dl>
+
+		{% endif %}
+	</div>
+{% endblock %}

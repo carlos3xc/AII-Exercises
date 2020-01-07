@@ -1,0 +1,24 @@
+{% extends 'master.html' %}
+
+{% block titulo %} Lista de Usuarios {% endblock %}
+
+{% block ocupacionesActiva %} uk-active {% endblock %}
+
+
+{% block contenido %} 
+    <div class="uk-animation-fade">
+	    <div class="uk-accordion" data-uk-accordion="{collapse: false}">
+	    	{% regroup usuarios by ocupacion as grouped %}
+	    	{% for group in grouped %}
+		    	<h3 class="uk-accordion-title">Ocupacion: {{group.grouper}} ({{group.list|length}} usuarios)</h3>
+		    	<div class="uk-accordion-content">
+		    		<ul class="uk-list  uk-list-striped">
+		    		{% for user in group.list %}
+						<li><strong>Id Usuario:</strong> {{user.idUsuario}} | <strong>Edad:</strong> {{user.edad}} | <strong>Codigo Postal:</strong> {{user.codigoPostal}}</li>
+					{% endfor %}
+				    </ul>
+		    	</div>
+	    	{% endfor %}
+		</div>
+	</div>
+{% endblock %}
